@@ -1,0 +1,42 @@
+const EMAIL = "(Email address you want to save photos from.)";//Email address
+const FOLDER = "(Google drive folder id.)";//Folder ID
+const folder = DriveApp.getFolderById(FOLDER);
+//Sort and Find appropriate emails.
+function PhotoSaveAutomation(){
+  //get the date today.
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  var Today = yyyy + '/' + mm + '/' + dd;
+  Logger.log(Today);
+  //get the date tomorrow.
+  var tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate()+1);
+  Logger.log(tomorrow);
+  var DD = String(tomorrow.getDate()).padStart(2, '0');
+  var MM = String(tomorrow.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var YYYY = tomorrow.getFullYear();
+  var Tomorrow = YYYY + '/' + MM + '/' + DDDD;
+  //mails sorting by name.
+  const sortname = "subject:("You can sort emails by subject text.")";//Variable. Can be sorted under other conditions.
+  //mail sorting within 1 day.
+  const sortdate = "after:" + Today+ "before:" + Tomorrow;
+  //Search results saved as threads.Threads are lists of search results.
+  const threads = GmailApp.search(sortname + sortdate, 0,1);
+  //Messages of threads saved as messages.
+  const messages = GmailApp.getMessagesForThreads(threads);
+  //Each message in each thread are taken from messages.
+  for(const thread of messages){
+    for(const message of thread){
+      Logger.log(message.getSubject());
+      //Recognize attachment in the sorted emails.
+      const attachments = message.getAttachments();
+      for(const attachment of attachments){
+        Logger.log(attachment.getName());
+        //Create file of each attachment in the selected folder.
+        folder.createFile(attachment);
+      }
+    }
+  }
+}
