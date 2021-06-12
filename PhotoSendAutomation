@@ -1,0 +1,35 @@
+//Start google drive.
+//Recognize photos in the specific folder.
+//Attach photos to the email.
+//Send the email to the receiver.
+//(receiver) Automatically save the photo to the google drive.
+
+//Start google drive.
+//Get file by name in the selected folder.
+function PhotoSendAutomation() {
+  //Recognize the folder in Google Drive.
+  var id = "(your Drive folder ID)"; //Folder ID
+  var target = DriveApp.getFolderById(id);
+  //get the date today.
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  today = mm + '/' + dd + '/' + yyyy;
+  //Logger.log(today);
+  //Recognize photo of which name is current date in the specific folder.
+  var name = today + ".jpg";
+  var files = target.getFilesByName(name);
+  while(files.hasNext()){
+    var file = files.next();
+    var fileName = file.getName();
+    Logger.log(fileName);
+  }
+  //Import email address.
+  const email = "(The email address you wanna send to.)";//Email address
+  //Set sending.
+  var subject = "I love you, my sweetheart!";
+  var mailcontent = "How are u? Have a good day with my cheerful photo!"; 
+  //Attach photo.
+  GmailApp.sendEmail(email,subject,mailcontent, {attachments:[file.getBlob().setName("ばにゃんちゃん"+ name)]});
+}
