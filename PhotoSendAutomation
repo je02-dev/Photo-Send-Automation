@@ -28,8 +28,8 @@ function PhotoSendAutomation() {
   //Import email address.
   const email = "(The email address you wanna send to.)";//Email address
   //Set sending.
-  var subject = "I love you, my sweetheart!";
+  var subject = "(Any subject you like.)";
   var mailcontent = "How are u? Have a good day with my cheerful photo!"; 
   //Attach photo.
-  GmailApp.sendEmail(email,subject,mailcontent, {attachments:[file.getBlob().setName("ばにゃんちゃん"+ name)]});
+  GmailApp.sendEmail(email,subject,mailcontent, {attachments:[file.getBlob().setName("(Any name you like.)")]});
 }
