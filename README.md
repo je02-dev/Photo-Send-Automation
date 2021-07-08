@@ -1,3 +1,4 @@
+you need to set triggers on your own at google app script IDE.
 # Daily File-Send-Automation
 Automatically send any file of which names are the triggered date in your google drive.
 Every day in the morning, this code will let her know what kind of files she received via gmail. 
