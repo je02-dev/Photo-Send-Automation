@@ -1,5 +1,7 @@
-# Photo-Send-Automation
-Automatically send photos of your google drive to the receiver every day in the morning. Let her know what kind of photos she received via gmail. 
+# Daily File-Send-Automation
+Automatically send any file of which names are the triggered date in your google drive.
+Every day in the morning, this code will let her know what kind of files she received via gmail. 
+You can customize the mail subtitle and phrase as you like.
 # Photo-save-automation
 Automatically save the photo from specific user to the google drive.
 Open gmails and sort emails to find emails from the specific user.
